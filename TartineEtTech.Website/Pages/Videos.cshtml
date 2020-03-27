@@ -1,0 +1,49 @@
+﻿@page
+@model TartineEtTech.Website.Pages.VideosModel
+@{
+    ViewData["Title"] = "Videos";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div id="page-content">
+    <h2>Videos</h2>
+
+    <div class="timeline two-column">
+        <!-- Timeline header -->
+        <div class="timeline-header">
+            <div class="timeline-header-title bg-success">Maintenant</div>
+        </div>
+        @foreach (var session in Model.Sessions)
+        {
+            <div class="timeline-entry">
+                <div class="timeline-stat">
+                    @foreach (var speaker in session.Speakers)
+                    {
+                        <div class="timeline-icon">
+                            <img alt="@speaker.Firstname @speaker.Lastname" src="@speaker.PictureUrl">
+                        </div>
+                    }
+
+                    <div class="timeline-time">@session.PublicationDate.ToShortDateString()</div>
+                </div>
+                <div class="timeline-label">
+                    <p class="mar-no pad-btm">
+                        @session.Title
+                    </p>
+                    <div class="img-holder">
+                        <div class="video-container">
+                            <iframe style="max-width:100%"
+                                    height="315"
+                                    src="@session.EmbeddedUrl"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="clearfix"></div>
+    </div>
+</div>

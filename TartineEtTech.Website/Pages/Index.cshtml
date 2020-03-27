@@ -1,0 +1,51 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Tartine & vous";
+}
+
+<div id="page-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-body">
+                <img src="~/img/tartineettech.png" style="max-width:100%;" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        @foreach (var session in Model.SessionsToDisplay)
+        {
+            <div class="col-lg-6">
+                <div class="panel text-center">
+                    <div class="pad-all bg-dark video-container">
+                        <iframe width="560"
+                                height="315"
+                                src="@session.EmbeddedUrl"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="pad-btm">
+                        <p class="text-2x mar-no text-main">@session.Title</p>
+                        @{
+                            bool firstSpeaker = true;
+                        }
+                        Tartiné par @foreach (var speaker in session.Speakers)
+                        {
+                            if (firstSpeaker)
+                            {
+                                firstSpeaker = false;
+                            }
+                            else
+                            {
+                                <span> &amp;</span>
+                            }
+                            <span>@speaker.Firstname</span>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
