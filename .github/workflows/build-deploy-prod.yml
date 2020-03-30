@@ -28,7 +28,7 @@ jobs:
       run: dotnet restore
     - name: .NET Core Local Tool Restore
       run: dotnet tool restore
-      working-directory: TartineEtTech.website
+      working-directory: TartineEtTech.Website
     - name: libman restore
       run: dotnet libman restore
       working-directory: TartineEtTech.Website
