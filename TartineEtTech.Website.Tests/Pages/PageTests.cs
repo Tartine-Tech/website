@@ -20,6 +20,7 @@ namespace TartineEtTech.Website.Tests.Pages
         [InlineData("videos")]
         [InlineData("codeofconduct")]
         [InlineData("speakers")]
+        [InlineData("activities")]
         public async Task WhenCallAPage_PageExistAndResultIsASuccessfullStatusCode(string url)
         {
             // Arrange
