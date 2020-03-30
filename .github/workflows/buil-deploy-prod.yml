@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI-CD
+name: CI-CD prod
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -27,6 +27,7 @@ jobs:
       run: dotnet restore
     - name: .NET Core Local Tool Restore
       run: dotnet tool restore
+      working-directory: TartineEtTech.Website
     - name: libman restore
       run: libman restore
       working-directory: TartineEtTech.Website
