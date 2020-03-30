@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
+using System.Linq;
 using TartineEtTech.Website.Models;
 using TartineEtTech.Website.Repositories;
 
@@ -19,7 +20,9 @@ namespace TartineEtTech.Website.Pages
 
         }
 
-        public IEnumerable<Speaker> Speakers 
-            => speakerRepository.GetSpeakers();
+        public IEnumerable<Speaker> Speakers
+            => speakerRepository.GetSpeakers()
+                                .OrderBy(c => c.Firstname)
+                                .ThenBy(c => c.Lastname);
     }
 }

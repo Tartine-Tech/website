@@ -18,7 +18,7 @@ namespace TartineEtTech.Website.Repositories
 
         private Speaker _olivierLeplus = new Speaker
         {
-            Firstname = "Oliver",
+            Firstname = "Olivier",
             Lastname = "Leplus",
             TwitterAccount = "https://twitter.com/olivierleplus",
             Company = "Microsoft",
@@ -59,8 +59,8 @@ namespace TartineEtTech.Website.Repositories
         {
             Title = "Github Actions",
             PublicationDate = new DateTime(2020, 02, 20),
-            VideosUrl = "https://www.youtube.com/watch?v=UB-p3Xey4qE",
-            EmbeddedUrl = "https://www.youtube.com/embed/UB-p3Xey4qE",
+            VideosUrl = "https://www.youtube.com/watch?v=wXNkOFGm5vQ",
+            EmbeddedUrl = "https://www.youtube.com/embed/wXNkOFGm5vQ",
             Description = "Dans cet épisode de Tartine & Tech, Yohan nous présente les Github Actions. Découvrez comment ça marche et comment les utiliser."
         };
 

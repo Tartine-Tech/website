@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "TartineEtTech.UiTests": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Test"
+      }
+    }
+  }
+}
