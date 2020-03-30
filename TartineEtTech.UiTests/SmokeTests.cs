@@ -5,7 +5,9 @@ using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using System;
+using System.Drawing;
 using System.IO;
+using System.Threading;
 
 namespace TartineEtTech.UiTests
 {
@@ -57,6 +59,8 @@ namespace TartineEtTech.UiTests
                     driver = new ChromeDriver();
                     break;
             }
+            var windowSize = new Size(1920, 1080);
+            driver.Manage().Window.Size = windowSize;
         }
 
         [TestCleanup]
@@ -81,21 +85,27 @@ namespace TartineEtTech.UiTests
         public void SmokeTest()
         {
             Log.Write($"Go to url : {GetHomeUrl()}");
-            driver.Navigate().GoToUrl(GetHomeUrl());
+            GoToUrlAndTakeScreenshot(GetHomeUrl());
+
+            ClickOnListAndTakeScreenshot("link-video", "videos", "Videos");
+            ClickOnListAndTakeScreenshot("link-speakers", "Speakers", "Invités");
+            ClickOnListAndTakeScreenshot("link-coc", "CodeOfConduct", "Code de conduite");
+            ClickOnListAndTakeScreenshot("link-activities", "Activities", "Activités");
+        }
+
+        private void ClickOnListAndTakeScreenshot(string linkId, string nameScenario, string pageTitle)
+        {
+            driver.FindElement(By.Id(linkId)).Click();
+            Thread.Sleep(1000);
+            TakeScreenshot(nameScenario);
+            Assert.IsTrue(driver.Title.Contains(pageTitle), $"Verified title of the page {nameScenario}");
+        }
+
+        private void GoToUrlAndTakeScreenshot(string url)
+        {
+            driver.Navigate().GoToUrl(url);
             TakeScreenshot("IndexScreen");
-            Assert.IsTrue(driver.Title.Contains("Tartine & vous"), "Verified title of the page");
-
-            driver.FindElement(By.Id("link-video")).Click();
-            TakeScreenshot("Videos");
-            Assert.IsTrue(driver.Title.Contains("Videos"), "Verified title of the page");
-
-            driver.FindElement(By.Id("link-speakers")).Click();
-            TakeScreenshot("Speakers");
-            Assert.IsTrue(driver.Title.Contains("Invités"), "Verified title of the page");
-
-            driver.FindElement(By.Id("link-coc")).Click();
-            TakeScreenshot("CodeOfConduct");
-            Assert.IsTrue(driver.Title.Contains("Code de conduite"), "Verified title of the page");
+            Assert.IsTrue(driver.Title.Contains("Tartine & vous"), "Verified title of the page index");
         }
 
         private void TakeScreenshot(string screenshotName)
